@@ -18,6 +18,7 @@ class MediationController extends GetxController {
     getMediations();
     cardNumberController.text = '';
   }
+
   var languageController = LanguageController.I;
   var formKey = GlobalKey<FormState>();
   var cardNumberController = TextEditingController();
@@ -54,7 +55,7 @@ class MediationController extends GetxController {
       update();
     });
 
-   // update();
+    // update();
   }
 
   set setNationality(setBranch) {
@@ -112,9 +113,9 @@ class MediationController extends GetxController {
         nationality.value = 0;
         selectedExperience.value = 0;
         selectedJob.value = 0;
-       // update();
-       Navigator.of(Get.context!).pop();
-       }).catchError((error) async {
+        // update();
+        Navigator.of(Get.context!).pop();
+      }).catchError((error) async {
         await EasyLoading.dismiss();
       });
       // }
@@ -189,13 +190,15 @@ class MediationController extends GetxController {
     ),
   ];
 
-   var listmediations = List<MediationData>.empty(growable: true).obs;
+  var listmediations = List<MediationData>.empty(growable: true).obs;
   var page = 1.obs;
   var lastPage = false.obs;
 
   Future<void> getMediations() async {
     isLoading(true);
-    MediationProvider().getMediations(page.value , languageController.getLocale).then(
+    MediationProvider()
+        .getMediations(page.value, languageController.getLocale)
+        .then(
       (value) {
         for (var data in value.data!.data! as List) {
           listmediations.add(data);
@@ -203,13 +206,18 @@ class MediationController extends GetxController {
         isLoading(false);
         update();
       },
-    );
+    ).catchError((error) {
+      isLoading(false);
+      update();
+    });
     update();
   }
 
   Future<void> getMoreMediation() async {
     isLoading(true);
-    MediationProvider().getMediations(page.value++ , languageController.getLocale).then(
+    MediationProvider()
+        .getMediations(page.value++, languageController.getLocale)
+        .then(
       (value) {
         for (var data in value.data!.data as List) {
           listmediations.add(data);

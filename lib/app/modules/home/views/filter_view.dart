@@ -6,7 +6,6 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/components/hourly/return_back_btn.dart';
-import 'package:musaneda/components/myFilterDialog.dart';
 import 'package:musaneda/components/myServices.dart';
 
 import '../../../../components/myCupertinoButton.dart';

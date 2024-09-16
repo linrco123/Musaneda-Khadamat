@@ -5,6 +5,8 @@ import 'package:musaneda/app/modules/hourly_service/mediation/views/add_mediatio
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
 import 'package:musaneda/components/hourly/service_type/service_type_card.dart';
 import 'package:musaneda/components/myFilterDialog.dart';
+import 'package:musaneda/config/constance.dart';
+import 'package:musaneda/config/functions.dart';
 import 'package:musaneda/config/myColor.dart';
 
 class ServiceTypeView extends GetView<HomeController> {
@@ -64,9 +66,11 @@ class ServiceTypeView extends GetView<HomeController> {
                         description: 'stayin_service_desc'.tr,
                         image: 'assets/images/contract.png',
                         function: () async {
-                          // await EasyLoading.show(status: 'loading'.tr);
-                         // Get.to(()=>const HomeServices());
-                          myFilterDialog(context);
+                          if (Constance.getToken().isEmpty) {
+                            showLoginSignupDialogue(context);
+                          } else {
+                            myFilterDialog(context);
+                          }
                         }),
                     const SizedBox(
                       height: 10.0,
@@ -75,7 +79,11 @@ class ServiceTypeView extends GetView<HomeController> {
                         title: "mediation_service".tr,
                         description: "mediation_service".tr,
                         function: () {
-                          Get.to(()=>const AddMediationView());
+                          if (Constance.getToken().isEmpty) {
+                            showLoginSignupDialogue(context);
+                          } else {
+                            Get.to(() => const AddMediationView());
+                          }
                         },
                         svg: true,
                         image: 'assets/images/drawer/delegation.svg')

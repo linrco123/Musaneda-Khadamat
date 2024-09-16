@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
+import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/myColor.dart';
 
 class HourOrdersView extends GetView<ServiceTypeController> {
@@ -414,7 +414,7 @@ class HourOrdersView extends GetView<ServiceTypeController> {
                   ],
                 ),
                 Obx(
-                  () => controller.isLoading.value
+                  () => controller.isLoading.value && Constance.getToken().isNotEmpty
                       ? Align(
                           alignment: Alignment.topCenter,
                           child: LoadingAnimationWidget.waveDots(

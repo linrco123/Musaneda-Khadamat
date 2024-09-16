@@ -94,9 +94,13 @@ void showLoginSignupDialogue(context) {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               logInSignupButton(
-                  title: 'log_in'.tr, languageController: languageController),
+                  title: 'log_in'.tr, languageController: languageController , onPressed: () {
+              Get.offAllNamed(Routes.LOGIN);
+            }),
               logInSignupButton(
-                  title: 'sign_up'.tr, languageController: languageController),
+                  title: 'sign_up'.tr, languageController: languageController,onPressed: () {
+              Get.offAllNamed(Routes.REGISTER);
+            }),
             ],
           )
         ],
@@ -105,7 +109,7 @@ void showLoginSignupDialogue(context) {
   );
 }
 
-Widget logInSignupButton({String? title, dynamic languageController}) =>
+Widget logInSignupButton({String? title, dynamic languageController ,void Function()? onPressed }) =>
     Container(
       width: 125.0,
       padding: const EdgeInsets.symmetric(horizontal: 0.0),
@@ -114,9 +118,7 @@ Widget logInSignupButton({String? title, dynamic languageController}) =>
           borderRadius: const BorderRadius.all(Radius.circular(20.0))),
       child: Center(
         child: TextButton(
-            onPressed: () {
-              Get.offAllNamed(Routes.LOGIN);
-            },
+            onPressed: onPressed,
             child: Text(
               title!,
               style: TextStyle(

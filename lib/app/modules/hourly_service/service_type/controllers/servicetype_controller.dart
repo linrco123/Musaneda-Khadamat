@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -87,20 +86,24 @@ class ServiceTypeController extends GetxController {
   }
 
   showAcceptanceDialogue(context) async {
-    if (hourServiceAcceptance.value == false) {
-      showAlertDialogue(
-        context,
-        title: 'alert'.tr,
-        content: "acceptance_condition".tr,
-        onConfirm: () async {
-          acceptHourService = true;
-          await EasyLoading.show(status: 'loading'.tr);
-          myOneHourFilterDialog(context);
-        },
-      );
+    if (Constance.getToken().isEmpty) {
+      showLoginSignupDialogue(Get.context);
     } else {
-      await EasyLoading.show(status: 'loading'.tr);
-      myOneHourFilterDialog(context);
+      if (hourServiceAcceptance.value == false) {
+        showAlertDialogue(
+          context,
+          title: 'alert'.tr,
+          content: "acceptance_condition".tr,
+          onConfirm: () async {
+            acceptHourService = true;
+            await EasyLoading.show(status: 'loading'.tr);
+            myOneHourFilterDialog(context);
+          },
+        );
+      } else {
+        await EasyLoading.show(status: 'loading'.tr);
+        myOneHourFilterDialog(context);
+      }
     }
   }
 
@@ -252,21 +255,12 @@ class ServiceTypeController extends GetxController {
 
   void validateFilterOptions() {
     if (nationality.value == 0) {
-      if (Constance.getToken().isEmpty) {
-        Get.back();
-        Get.back();
-
-        Future.delayed(const Duration(milliseconds: 600)).then((value){
-          showLoginSignupDialogue(Get.context);
-        });
-      } else {
-        mySnackBar(
-          title: "warning".tr,
-          message: "choose_nationality".tr,
-          color: MYColor.warning,
-          icon: CupertinoIcons.info_circle,
-        );
-      }
+      mySnackBar(
+        title: "warning".tr,
+        message: "choose_nationality".tr,
+        color: MYColor.warning,
+        icon: CupertinoIcons.info_circle,
+      );
     } else if (visitsNumber.value == 0) {
       mySnackBar(
         title: "warning".tr,
@@ -398,7 +392,10 @@ class ServiceTypeController extends GetxController {
         isLoading(false);
         update();
       },
-    );
+    ).catchError((error) {
+      isLoading(false);
+      update();
+    });
     update();
   }
 

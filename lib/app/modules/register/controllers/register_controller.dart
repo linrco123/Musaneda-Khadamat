@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:musaneda/app/modules/login/controllers/login_controller.dart';
-import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/config/functions.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sms_autofill/sms_autofill.dart';
@@ -189,7 +188,8 @@ class RegisterController extends GetxController {
           if (res == 1) {
             isProcessing(false);
             Get.back();
-            Get.offNamed(Routes.HOME);
+            checkServiceType();
+            //Get.offNamed(Routes.HOME);
             final localData = box.read('LOGIN_MODEL');
             Map data = {
               "id": localData['id'],
