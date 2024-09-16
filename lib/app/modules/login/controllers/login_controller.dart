@@ -308,7 +308,7 @@ class LoginController extends GetxController {
 
   void checkServiceType() {
     if (systemType.value == 1) {
-      Get.offAllNamed(Routes.MAIN_HOME_PAGE);
+      Get.offAllNamed(Routes.HOME);
     } else {
       Get.offAllNamed(Routes.MAIN_HOME_PAGE);
     }

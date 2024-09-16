@@ -13,13 +13,13 @@ class HourOrderModel {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = <String, dynamic>{};
-        data["msg"] = msg;
+        final Map<String, dynamic> _data = <String, dynamic>{};
+        _data["msg"] = msg;
         if(data != null) {
-            data["data"] = data?.toJson();
+            _data["data"] = data?.toJson();
         }
-        data["code"] = code;
-        return data;
+        _data["code"] = code;
+        return _data;
     }
 }
 
@@ -33,11 +33,11 @@ class Data {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = <String, dynamic>{};
+        final Map<String, dynamic> _data = <String, dynamic>{};
         if(order != null) {
-            data["order"] = order?.toJson();
+            _data["order"] = order?.toJson();
         }
-        return data;
+        return _data;
     }
 }
 
@@ -77,21 +77,21 @@ class Order {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = <String, dynamic>{};
-        data["country_id"] = countryId;
-        data["duration"] = duration;
-        data["shift"] = shift;
-        data["from_date"] = fromDate;
-        data["visits"] = visits;
-        data["to_date"] = toDate;
-        data["from_time"] = fromTime;
-        data["servant_count"] = servantCount;
-        data["user_address_id"] = userAddressId;
-        data["cost"] = cost;
-        data["user_id"] = userId;
-        data["updated_at"] = updatedAt;
-        data["created_at"] = createdAt;
-        data["id"] = id;
-        return data;
+        final Map<String, dynamic> _data = <String, dynamic>{};
+        _data["country_id"] = countryId;
+        _data["duration"] = duration;
+        _data["shift"] = shift;
+        _data["from_date"] = fromDate;
+        _data["visits"] = visits;
+        _data["to_date"] = toDate;
+        _data["from_time"] = fromTime;
+        _data["servant_count"] = servantCount;
+        _data["user_address_id"] = userAddressId;
+        _data["cost"] = cost;
+        _data["user_id"] = userId;
+        _data["updated_at"] = updatedAt;
+        _data["created_at"] = createdAt;
+        _data["id"] = id;
+        return _data;
     }
 }
