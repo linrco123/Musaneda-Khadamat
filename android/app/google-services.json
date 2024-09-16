@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "213649598855",
+    "project_id": "musaneda-khdamat",
+    "storage_bucket": "musaneda-khdamat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213649598855:android:698b698974a5a0c078cb22",
+        "android_client_info": {
+          "package_name": "com.fnrco.musaneda"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyBaZjk0NhgdUj8vA20UQSyzlL9KUQ3HM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

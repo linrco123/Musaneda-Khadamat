@@ -1,0 +1,178 @@
+name: musaneda
+version: 2.1.0+16
+publish_to: none
+description: A new Flutter project. 
+environment: 
+  sdk: '>=3.3.4 <4.0.0'
+ 
+dependencies: 
+  cupertino_icons: ^1.0.2
+  flutter: 
+    sdk: flutter
+  sms_autofill: ^2.2.0
+  flutter_advanced_drawer: ^1.3.2
+  flutter_svg: 2.0.10+1
+  get_storage: ^2.0.3
+  google_maps_flutter: ^2.2.1
+  geolocator: ^9.0.2
+  location: ^4.4.0
+  flutter_easyloading: ^3.0.5
+  file_picker: ^8.0.5
+  uuid: ^3.0.6
+  firebase_core: ^2.2.0
+  firebase_messaging: ^14.1.0
+  lazy_load_scrollview: ^1.3.0
+  http: ^1.0.0
+  connectivity_plus: ^4.0.1
+  path: ^1.8.2
+  mockito: ^5.4.2
+  flutter_pdfview: ^1.2.9
+  talker: ^3.0.0+1
+  package_info_plus: ^4.0.2
+  logger: ^1.3.0
+  geocoding: ^2.1.0
+  flutter_local_notifications: ^17.2.2
+  sentry_flutter: ^7.9.0
+  cached_network_image: ^3.3.1
+  amazon_payfort: ^1.1.1
+  network_info_plus: ^5.0.3
+  webview_flutter: ^4.4.2
+  get: ^4.6.6
+  flutter_native_splash: ^2.3.9
+  fluttertoast: ^8.2.6
+  date_picker_plus: ^4.1.0
+  url_launcher: ^6.3.0
+  flutter_launcher_icons: ^0.13.1
+  loading_animation_widget: ^1.2.1
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/mobile6.png"
+  min_sdk_android: 21
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+  color: "#118697"
+  image: assets/images/mobile6.png
+  android_12:
+    color: "#118697"
+    image: assets/images/mobile6.png
+    
+
+flutter: 
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/images/bottom/hours.svg
+    - assets/images/bottom/housemaid.svg
+    - assets/images/bottom/handshake.svg
+    - assets/images/bottom/neworder.svg
+    - assets/images/drawer/
+    - assets/images/services/
+    - assets/images/bar/
+    - assets/images/png/
+    - assets/images/icon/
+    - assets/certificate/
+    - assets/images/packages/
+    - shorebird.yaml
+ 
+  fonts:
+  # ================= GE-SS TWO font =========================
+    - family: gesstwo_medium
+      fonts:
+        - asset: assets/fonts/gesstwo/GE_SS_Two_Medium.otf
+
+    - family: gesstwo_light
+      fonts:
+        - asset: assets/fonts/gesstwo/GE_SS_Two_Light.otf
+
+    - family: gesstwo_bold
+      fonts:
+        - asset: assets/fonts/gesstwo/GE_SS_Two_Bold.otf
+  # ================= montserrat font =========================
+    - family:  mikhak_medium
+      fonts:
+        - asset: assets/fonts/mikhak_medium.ttf
+
+    - family:  montserrat_black
+      fonts:
+        - asset: assets/fonts/montserrat_black.ttf
+
+    - family:  montserrat_bold
+      fonts:
+        - asset: assets/fonts/montserrat_bold.ttf
+
+    - family:  montserrat_extra_light
+      fonts:
+        - asset: assets/fonts/montserrat_extra_light.ttf
+
+    - family:  montserrat_light
+      fonts:
+        - asset: assets/fonts/montserrat_light.ttf
+
+    - family:  montserrat_medium
+      fonts:
+        - asset: assets/fonts/montserrat_medium.ttf
+
+    - family: montserrat_regular
+      fonts:
+        - asset: assets/fonts/montserrat_regular.ttf
+
+    - family:  montserrat_extra_bold
+      fonts:
+        - asset: assets/fonts/montserrat_extra_bold.ttf
+
+    - family:  montserrat_semi_bold
+      fonts:
+        - asset: assets/fonts/montserrat_semi_bold.ttf
+
+    - family:  montserrat_thin
+      fonts:
+        - asset: assets/fonts/montserrat_thin.ttf
+
+  # ================= cairo font =========================
+
+    - family:  cairo_black
+      fonts:
+        - asset: assets/fonts/cairo/Cairo-Black.ttf
+
+    - family:  cairo_bold
+      fonts:
+        - asset: assets/fonts/cairo/Cairo-Bold.ttf
+
+    - family:  cairo_extra_light
+      fonts:
+        - asset: assets/fonts/cairo/Cairo-ExtraLight.ttf
+
+    - family:  cairo_light
+      fonts:
+        - asset: assets/fonts/cairo/Cairo-Light.ttf
+
+    - family:  cairo_medium
+      fonts:
+        - asset: assets/fonts/cairo/Cairo-Medium.ttf
+
+    - family: cairo_regular
+      fonts:
+        - asset: assets/fonts/cairo/Cairo-Regular.ttf
+
+    - family:  cairo_extra_bold
+      fonts:
+        - asset: assets/fonts/cairo/Cairo-ExtraBold.ttf
+
+    - family:  cairo_semi_bold
+      fonts:
+        - asset: assets/fonts/cairo/Cairo-SemiBold.ttf
+
