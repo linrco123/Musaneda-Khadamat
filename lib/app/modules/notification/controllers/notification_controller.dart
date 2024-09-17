@@ -18,21 +18,15 @@ import '../../../controllers/language_controller.dart';
 import '../notification_model.dart';
 
 class NotificationController extends GetxController {
+  static NotificationController get I => Get.put(NotificationController());
+  @override
+  onInit() {
+    super.onInit();
+    getNotifications();
+  }
 
   Future<void> _firebaseMessagingBackgroundHandler(
-      RemoteMessage? message) async {
-    FirebaseMessageModel frmModel;
-    if (message != null) {
-      frmModel = FirebaseMessageModel(
-        title: message.notification!.title!,
-        body: message.notification!.body!,
-        type: message.data['type'],
-        dateTime: since(date: message.data['date_time']),
-      );
-
-      notifyList.add(frmModel);
-    }
-  }
+      RemoteMessage? message) async {}
 
   Future<void> config() async {
     try {
@@ -169,17 +163,10 @@ class NotificationController extends GetxController {
 
       FirebaseMessaging.onMessage.listen(
         (message) async {
-          FirebaseMessageModel frmModel = FirebaseMessageModel(
-            title: message.notification!.title!,
-            body: message.notification!.body!,
-            type: message.data['type'] ?? ' ',
-            dateTime: message.data['date_time'] ?? ' ',
-          );
-          notifyList.add(frmModel);
           fl.show(
               0,
-              frmModel.title,
-              frmModel.body,
+              message.notification!.title!,
+              message.notification!.body!,
               const NotificationDetails(
                 android: AndroidNotificationDetails(
                   'main_channel',
@@ -221,11 +208,7 @@ class NotificationController extends GetxController {
     }
   }
 
-  var notifyList = <FirebaseMessageModel>[];
-
-  List<FirebaseMessageModel> get getNotify => notifyList;
-
-  remove(FirebaseMessageModel ob) {
+  remove(NotificationData ob) {
     if (getNotify.contains(ob)) {
       getNotify.remove(ob);
     }
@@ -316,6 +299,45 @@ class NotificationController extends GetxController {
     } catch (e) {}
 
     update();
+  }
+
+  var notifyList = <NotificationData>[];
+
+  List<NotificationData> get getNotify => notifyList;
+  int page = 1;
+  var isLoading = false.obs;
+  var lastPage = false.obs;
+  void getNotifications() {
+    NotificationProvider().getNotifications(page).then((value) {
+      if (value.data != null) {
+        for (Notifications data in value.data!.notifications as List) {
+          notifyList.add(data.data!);
+        }
+      }
+      isLoading(false);
+      update();
+    }).catchError((error) {
+      isLoading(false);
+      update();
+    });
+    ;
+  }
+
+  void getMoreNotifications() {
+    isLoading(true);
+    NotificationProvider().getNotifications(++page).then((value) {
+      for (Notifications data in value.data!.notifications as List) {
+        notifyList.add(data.data!);
+      }
+      if (page >= value.data!.pagination!.lastPage!) {
+        lastPage.value = true;
+      }
+      isLoading(false);
+      update();
+    }).catchError((error) {
+      isLoading(false);
+      update();
+    });
   }
 }
 

@@ -378,12 +378,14 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       actions: [
-        // IconButton(
-        //     onPressed: () {},
-        //     icon: const Icon(
-        //       Icons.notifications_none,
-        //       size: 25.0,
-        //     )),
+        IconButton(
+            onPressed: () {
+              Get.toNamed(Routes.NOTIFICATION);
+             },
+            icon: const Icon(
+              Icons.notifications_none,
+              size: 25.0,
+            )),
         controller.tap.value != 0 && controller.tap.value != 1
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),

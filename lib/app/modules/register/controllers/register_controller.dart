@@ -132,6 +132,9 @@ class RegisterController extends GetxController {
   void checkServiceType(){
     loginController.checkServiceType();
   }
+  void checkServiceTypeForTest(){
+    loginController.checkServiceTypeForTest();
+  }
 
   /// register
   register(context) async {

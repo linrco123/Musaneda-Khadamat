@@ -19,6 +19,8 @@ import 'package:musaneda/app/modules/hourly_service/welcome/views/welcome_view.d
 import 'package:musaneda/app/modules/internet_conn_status/bindings/internet_conn_bindings.dart';
 import 'package:musaneda/app/modules/internet_conn_status/views/internet_connection.dart';
 import 'package:musaneda/app/modules/locations/views/create_location_view.dart';
+import 'package:musaneda/app/modules/notification/bindings/notification_binding.dart';
+import 'package:musaneda/app/modules/notification/views/notification_view.dart';
 
 import '../modules/complaint/bindings/complaint_binding.dart';
 import '../modules/complaint/views/complaint_view.dart';
@@ -153,11 +155,11 @@ class AppPages {
       page: () => const InternetConnectionView(),
       binding: InternetConnBindings(),
     ),
-    // GetPage(
-    //   name: _Paths.NOTIFICATION,
-    //   page: () => const NotificationView(),
-    //   binding: NotificationBinding(),
-    // ),
+    GetPage(
+      name: _Paths.NOTIFICATION,
+      page: () => const NotificationView(),
+      binding: NotificationBinding(),
+    ),
     GetPage(
       name: _Paths.MAIN_HOME_PAGE,
       page: () => const MainHomePageView(),

@@ -313,4 +313,16 @@ class LoginController extends GetxController {
       Get.offAllNamed(Routes.MAIN_HOME_PAGE);
     }
   }
+
+   checkServiceTypeText() {
+    if (systemType.value == 1) {
+      return Routes.HOME;
+    } else {
+      return Routes.MAIN_HOME_PAGE;
+    }
+  }
+
+  void checkServiceTypeForTest() {
+    Get.offAllNamed(Routes.HOME);
+  }
 }

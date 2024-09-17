@@ -110,13 +110,7 @@ initialRoute() {
     if (connectivity() == false) {
       return AppPages.MAIN_HOME_PAGE;
     } else {
-      if (LoginController.I.isSA()) {
-        return Routes.HOME;
-        //return AppPages.MAIN_HOME_PAGE;
-      } else {
-       // return Routes.HOME;
-        return AppPages.MAIN_HOME_PAGE;
-      }
+      return LoginController.I.checkServiceTypeText();
     }
   } else {
     return AppPages.INITIAL;

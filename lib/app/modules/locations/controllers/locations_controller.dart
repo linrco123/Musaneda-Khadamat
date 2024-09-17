@@ -40,7 +40,7 @@ class LocationsController extends GetxController {
   void onInit() {
     getLocations();
     determinePosition();
-    getCurrentLocation();
+      getCurrentLocation();
     super.onInit();
   }
 
@@ -478,7 +478,7 @@ class LocationsController extends GetxController {
   void postLocations(String page) {
     Map data = {
       "address": address.value,
-      "city": city.value.isNotEmpty ? city.value : 'another city',
+      "city": city.value,
       "country": country.value,
       "latitude": latitude.value,
       "longitude": longitude.value,

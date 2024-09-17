@@ -122,7 +122,7 @@ Widget logInSignupButton({String? title, dynamic languageController ,void Functi
             child: Text(
               title!,
               style: TextStyle(
-                  color: MYColor.primary,
+                  color: MYColor.white,
                   fontSize: languageController.isEnglish ? 18.0 : 14.0,
                   fontWeight: FontWeight.bold),
             )),
