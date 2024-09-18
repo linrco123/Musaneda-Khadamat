@@ -107,11 +107,7 @@ initialRoute() {
   if (LoginController.I.isAuth() &&
       box['verified'] == true &&
       box['deactivated'] == false) {
-    if (connectivity() == false) {
-      return AppPages.MAIN_HOME_PAGE;
-    } else {
-      return LoginController.I.checkServiceTypeText();
-    }
+    return LoginController.I.checkServiceTypeText();
   } else {
     return AppPages.INITIAL;
   }
