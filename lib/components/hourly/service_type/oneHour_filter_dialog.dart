@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -9,11 +10,11 @@ import 'package:musaneda/app/modules/hourly_service/service_type/controllers/ser
 import 'package:musaneda/components/hourly/service_type/maids_counter_btn.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
 import 'package:musaneda/components/myDropdown.dart';
+import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/myColor.dart';
 
 void myOneHourFilterDialog(context) => Get.defaultDialog(
       backgroundColor: MYColor.white,
-      
       title: "hour_filter_menu_due_to".tr,
       titleStyle: TextStyle(
         color: MYColor.primary,
@@ -36,6 +37,129 @@ void myOneHourFilterDialog(context) => Get.defaultDialog(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, bottom: 5),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/images/city.png',
+                          height: 25.0,
+                          width: 25,
+                          color: MYColor.buttons,
+                          filterQuality: FilterQuality.high,
+                        ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        Text(
+                          'city'.tr,
+                          style: TextStyle(
+                            color: MYColor.primary,
+                            fontSize: 16,
+                            //fontWeight: FontWeight.bold,
+                            fontFamily: 'cairo_regular',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Obx(
+                    () => myDropdown(
+                      context: context,
+                      value: serviceTypeController.city.value,
+                      onChanged: (value) {
+                        serviceTypeController.setCity = value;
+                        if (value == 1) { // Riyad city id is 1
+                          serviceTypeController.getDistricts(value);
+                        }else{
+                           mySnackBar(
+                              title: 'warning'.tr,
+                              message:
+                                   'service_restricted_riyad'
+                                      .tr,
+                              color: MYColor.warning,
+                              icon: CupertinoIcons.info);
+                        }
+                      },
+                      items: serviceTypeController.listCities.map((item) {
+                        return DropdownMenuItem(
+                          value: item.id,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 0, right: 0),
+                            child: Text(
+                              LanguageController.I.isEnglish
+                                  ? item.name!.en!
+                                  : item.name!.ar!,
+                              style: TextStyle(
+                                color: MYColor.greyDeep,
+                                fontSize: 13,
+                                fontFamily: 'cairo_regular',
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  Visibility(
+                    visible: serviceTypeController.city.value ==1 ,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20, bottom: 5),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            'assets/images/district.png',
+                            height: 25.0,
+                            width: 25,
+                            color: MYColor.buttons,
+                            filterQuality: FilterQuality.high,
+                          ),
+                          const SizedBox(
+                            width: 10.0,
+                          ),
+                          Text(
+                            'district'.tr,
+                            style: TextStyle(
+                              color: MYColor.primary,
+                              fontSize: 16,
+                              //fontWeight: FontWeight.bold,
+                              fontFamily: 'cairo_regular',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: serviceTypeController.city.value ==1 ,
+                    child: Obx(
+                      () => myDropdown(
+                        context: context,
+                        value: serviceTypeController.district.value,
+                        onChanged: (value) {
+                          serviceTypeController.setDistrict = value;
+                        },
+                        items: serviceTypeController.listDistricts.map((item) {
+                          return DropdownMenuItem(
+                            value: item.id,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 0, right: 0),
+                              child: Text(
+                                LanguageController.I.isEnglish
+                                    ? item.title!.en!
+                                    : item.title!.ar!,
+                                style: TextStyle(
+                                  color: MYColor.greyDeep,
+                                  fontSize: 13,
+                                  fontFamily: 'cairo_regular',
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20, bottom: 5),
                     child: Row(

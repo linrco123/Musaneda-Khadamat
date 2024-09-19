@@ -124,6 +124,7 @@ const Map<String, String> arSA = {
   "confirmation": "التأكيد",
   "payment": "الدفع",
   "city": "المدينة",
+  "district": "الحى",
   "address": "العنوان",
   "pick_up_branch": "فرع الاستلام",
   "rent_ended": "تاريخ انتهاء الايجار",
@@ -156,6 +157,7 @@ const Map<String, String> arSA = {
   "rejected": "تم الرفض",
   "rejected_msg": "تم رفض الطلب",
   "msg_select_city": "برجاء تحديد المدينة!",
+  "msg_select_district": "برجاء تحديد الحى!",
   "msg_select_branch": "برجاء تحديد الفرع!",
   "msg_select_location": "برجاء تحديد الموقع!",
   "order_success_msg": "تم إرسال بيانات الطلب بنجاح",
@@ -433,8 +435,8 @@ const Map<String, String> arSA = {
   'confirm_date': ' تاكيد التاريخ',
 
   //"choose_nationality"  "choose_visit_number" "choose_working_hour" "choose_shift_type" "choose_maid_number"
-  "choose_nationality": " اختر الجنسية",
-  "choose_visit_number": " اختر عدد الزيارات",
+  "choose_nationality": " من فضلك اختر الجنسية",
+  "choose_visit_number": "من فضلك اختر عدد الزيارات",
   "choose_working_hour": "اختر عدد الساعات",
   "choose_shift_type": "اختر نوع النوبة",
   "choose_maid_number": "اختر عدد المساندة",
@@ -499,7 +501,7 @@ const Map<String, String> arSA = {
   'call': 'اتصل',
   'view_cv': "عرض السيرة الذاتية",
   "skip": "تخطى",
-  'go':'اذهب',
+  'go': 'اذهب',
   'login_signup_heading':
       'إذا كنت تريد طلب خدمة فى تطبيق مساندة توجه إلى شاشة تسجيل الدخول او إنشاء الحساب ',
   'guest': 'عزيزى الضيف',
@@ -507,4 +509,5 @@ const Map<String, String> arSA = {
   'have_no_account': 'ليس لديك حساب بالفعل !',
   "see_personal_data":
       'إذا كنت تريد استعراض بياناتك الشخصية , يجب عليك اولا تسجيل الدخول أو إنشاء حساب',
+  'service_restricted_riyad': 'خدمة الساعة مقتصرة على مدينة الرياض فقط',
 };

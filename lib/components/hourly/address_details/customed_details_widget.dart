@@ -3,8 +3,9 @@
  import 'package:flutter/material.dart';
 import 'package:musaneda/config/myColor.dart';
 
-TextFormField CustomedTextField(BuildContext context,controller,text , keyboardType) {
+TextFormField CustomedTextField(BuildContext context,controller,text , keyboardType , isEnabled) {
     return TextFormField(
+      enabled:isEnabled ,
       controller: controller,
       keyboardType: keyboardType,
       textAlign: TextAlign.start,

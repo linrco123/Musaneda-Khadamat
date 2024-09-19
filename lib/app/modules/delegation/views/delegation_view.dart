@@ -42,7 +42,7 @@ class DelegationView extends GetView<DelegationController> {
                 ? Center(
                     child: Text(
                       "delegations_empty".tr,
-                      style: TextStyle(color: MYColor.grey, fontSize: 18.0),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   )
                 : Padding(
@@ -53,8 +53,9 @@ class DelegationView extends GetView<DelegationController> {
                       children: [
                         Text(
                           "delegation".tr,
-                          style: const TextStyle(
+                          style:   TextStyle(
                             fontSize: 16,
+                            color: MYColor.black,
                             fontFamily: 'cairo_medium',
                           ),
                         ),

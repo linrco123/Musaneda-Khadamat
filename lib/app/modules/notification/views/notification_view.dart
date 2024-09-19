@@ -1,8 +1,9 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
- import 'package:musaneda/components/hourly/return_back_btn.dart';
+import 'package:musaneda/app/controllers/language_controller.dart';
+import 'package:musaneda/components/hourly/return_back_btn.dart';
 import 'package:musaneda/config/constance.dart';
 
 import '../../../../config/myColor.dart';
@@ -67,7 +68,7 @@ class NotificationView extends GetView<NotificationController> {
                       itemBuilder: (context, i) {
                         final notification = controller.notifyList[i];
                         return Container(
-                          height: 90,
+                          height: 100,
                           width: Get.width,
                           decoration: BoxDecoration(
                             color: MYColor.white,
@@ -81,7 +82,7 @@ class NotificationView extends GetView<NotificationController> {
                             ],
                           ),
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
+                            horizontal: 15,
                             vertical: 10,
                           ),
                           margin: const EdgeInsets.symmetric(
@@ -93,18 +94,27 @@ class NotificationView extends GetView<NotificationController> {
                               const SizedBox(width: 10),
                               Expanded(
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  //   mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment:
+                                      LanguageController.I.isEnglish
+                                          ? CrossAxisAlignment.end
+                                          : CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      notification.title!,
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
+                                    Container(
+                                      margin: const EdgeInsets.symmetric(vertical: 5.0),
+                                      child: Text(
+                                         notification.title!,
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(height: 5),
                                     Text(
+                                      textAlign: LanguageController.I.isEnglish
+                                          ? TextAlign.end:TextAlign.start,
                                       notification.message!.length > 100
                                           ? '${controller.getNotify[i].message!.substring(0, 100)}...'
                                           : controller.getNotify[i].message!,

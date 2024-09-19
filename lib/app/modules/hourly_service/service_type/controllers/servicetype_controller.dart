@@ -6,6 +6,7 @@ import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/home/cities_model.dart';
 import 'package:musaneda/app/modules/home/name_language_model.dart';
 import 'package:musaneda/app/modules/home/nationalities_model.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/models/districts_model.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/models/get_hour_order_model.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/providers/servicetype_provider.dart';
 import 'package:musaneda/app/modules/order/views/bank_account/bank_accounts_details_view.dart';
@@ -110,6 +111,7 @@ class ServiceTypeController extends GetxController {
   late TextEditingController workersNumbercontroller;
   RxInt nationality = 0.obs;
   RxInt city = 0.obs;
+  RxInt district = 0.obs;
   RxInt workingHours = 4.obs;
   RxString shiftType = 'am'.obs;
   RxInt visitsNumber = 0.obs;
@@ -254,7 +256,21 @@ class ServiceTypeController extends GetxController {
   }
 
   void validateFilterOptions() {
-    if (nationality.value == 0) {
+    if (city.value == 0) {
+      mySnackBar(
+        title: "warning".tr,
+        message: "msg_select_city".tr,
+        color: MYColor.warning,
+        icon: CupertinoIcons.info_circle,
+      );
+    } else if (district.value == 0) {
+      mySnackBar(
+        title: "warning".tr,
+        message: "msg_select_district".tr,
+        color: MYColor.warning,
+        icon: CupertinoIcons.info_circle,
+      );
+    } else if (nationality.value == 0) {
       mySnackBar(
         title: "warning".tr,
         message: "choose_nationality".tr,
@@ -337,6 +353,40 @@ class ServiceTypeController extends GetxController {
 
   set setCity(setCity) {
     city.value = setCity;
+    update();
+  }
+
+  List<DistrictsData> listDistricts = List<DistrictsData>.empty(growable: true);
+   void getDistricts(int cityID)   {
+    isLoading(true);
+    listDistricts.clear();
+    listDistricts.add(
+      DistrictsData(
+        id: 0,
+        title: TitleLang(
+          ar: "اختر الحى",
+          en: "Select District",
+        ),
+        latitude: "",
+        longitude: "",
+        city: 0,
+      ),
+    );
+    ServiceTypeProvider().getDistricts(cityID).then((value) {
+      for (var data in value.data as List) {
+        listDistricts.add(data);
+      }
+      isLoading(false);
+      update();
+    }).catchError((error) async {
+      await EasyLoading.dismiss();
+    });
+
+   // update();
+  }
+
+  set setDistrict(setDistrict) {
+    district.value = setDistrict;
     update();
   }
 

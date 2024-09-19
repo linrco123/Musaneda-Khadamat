@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/locations/controllers/locations_controller.dart';
 import 'package:musaneda/components/hourly/address_details/address_details_widget.dart';
@@ -21,6 +22,8 @@ class AddressDetailsView extends GetView<LocationsController> {
               color: MYColor.primary,
               fontWeight: FontWeight.bold),
         ),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+            systemNavigationBarIconBrightness: Brightness.dark),
         backgroundColor: MYColor.primary.withOpacity(0.1),
         foregroundColor: MYColor.primary.withOpacity(0.1),
         leading: IconButton(
@@ -55,24 +58,40 @@ class AddressDetailsView extends GetView<LocationsController> {
                     ),
                   ),
                   AddressDetailsWidget(
+                    title: 'city'.tr,
+                    controler: locationController.cityController,
+                    textInputType: TextInputType.name,
+                    isEnabled: false,
+                  ),
+                  AddressDetailsWidget(
+                    title: 'district'.tr,
+                    controler: locationController.districtController,
+                    textInputType: TextInputType.name,
+                    isEnabled: false,
+                  ),
+                  AddressDetailsWidget(
                     title: 'address_name'.tr,
                     controler: locationController.txtTitle,
                     textInputType: TextInputType.name,
+                    isEnabled: true,
                   ),
                   AddressDetailsWidget(
                     title: 'street_name'.tr,
                     controler: locationController.txtNotes,
                     textInputType: TextInputType.name,
+                    isEnabled: true,
                   ),
                   AddressDetailsWidget(
                     title: 'building_number'.tr,
                     controler: locationController.buildingController,
                     textInputType: TextInputType.number,
+                    isEnabled: true,
                   ),
                   AddressDetailsWidget(
                     title: 'floor_number'.tr,
                     controler: locationController.floorController,
                     textInputType: TextInputType.number,
+                    isEnabled: true,
                   ),
 
                   // AddressDetailsWidget(

@@ -65,16 +65,17 @@ Widget myMusanedaCard({context, name, image, age, country, about}) {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Text(
-                        name,
-                        maxLines: 1,
-                        style: const TextStyle(
-                            fontSize: 14,
-                            overflow: TextOverflow.ellipsis
-                        ),
-                      ),
+                      child: Text(name,
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              color: MYColor.grey,
+                              fontFamily: 'cairo_regular'),
+                          overflow: TextOverflow.ellipsis),
                     ),
-                    const SizedBox(width: 5.0,),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
                     Text(
                       age,
                       style: TextStyle(

@@ -164,7 +164,7 @@ class OrderView extends GetView<OrderController> {
                 context: context,
                 value: controller.selectedCity.value,
                 onChanged: (value) {
-                   controller.setCity = value;
+                  controller.setCity = value;
                   //controller.selectedCity.value = 1;
                 },
                 items: HomeController.I.listCities.map(
@@ -710,7 +710,7 @@ class OrderView extends GetView<OrderController> {
                               children: [
                                 Column(
                                   children: [
-                                  Text(
+                                    Text(
                                       "full_name".tr,
                                       style: TextStyle(
                                         color: MYColor.black,
@@ -1114,7 +1114,11 @@ class OrderView extends GetView<OrderController> {
                                   const SizedBox(
                                     width: 10.0,
                                   ),
-                                  Text(controller.paymentMethods[index].name)
+                                  Text(
+                                    controller.paymentMethods[index].name,
+                                    style: TextStyle(
+                                        fontSize: 18.0, color: MYColor.grey),
+                                  )
                                 ],
                               ),
                             ))
@@ -1151,7 +1155,7 @@ class OrderView extends GetView<OrderController> {
                                 ),
                                 Text(
                                   controller.paymentMethods[index].name,
-                                  style: const TextStyle(fontSize: 16.0),
+                                  style:  TextStyle(fontSize: 18.0 , color: MYColor.grey , fontFamily: 'cairo_medium'),
                                 )
                               ],
                             ),
@@ -1320,7 +1324,6 @@ class OrderView extends GetView<OrderController> {
                 'totalPrice': OrderController.I.packagesData.total!,
                 'page': 'order'
               });
- 
             } else if (OrderController.I.paymentBank.value) {
               // //send request to endpoint (pay-through-bank) flag option to 1 for ex
               //if success go to BankAccountdetails screen
@@ -1329,15 +1332,13 @@ class OrderView extends GetView<OrderController> {
                 'totalPrice': OrderController.I.packagesData.total!,
                 'page': 'order'
               });
- 
             } else if (controller.currentStep.value == 4) {
-               //CustomPaymentController.I.payWithAmazon();
-                Get.to(const BankAccountdetails(), arguments: {
+              //CustomPaymentController.I.payWithAmazon();
+              Get.to(const BankAccountdetails(), arguments: {
                 'orderID': OrderController.I.orderID,
                 'totalPrice': OrderController.I.packagesData.total!,
                 'page': 'order'
               });
-            
             } else {
               controller.increment();
             }

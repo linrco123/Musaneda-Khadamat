@@ -112,6 +112,7 @@ class OrderDetailsView extends GetView<LocationsController> {
                                           serviceTypeController.totalPackageCost
                                               .toString(),
                                           style: TextStyle(
+                                              fontSize: 16.0,
                                               fontWeight: FontWeight.bold,
                                               color: MYColor.primary),
                                         ),
@@ -171,7 +172,8 @@ class OrderDetailsView extends GetView<LocationsController> {
                                   datePickerController.selectedDate.value,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: MYColor.primary),
+                                      color: MYColor.primary,
+                                      fontSize: 15.0),
                                 ),
                                 const SizedBox(
                                   height: 10,
@@ -188,6 +190,7 @@ class OrderDetailsView extends GetView<LocationsController> {
                                 ),
                                 Text(chosenLocation.address!,
                                     style: TextStyle(
+                                        fontSize: 15.0,
                                         fontWeight: FontWeight.bold,
                                         color: MYColor.primary)),
                                 const SizedBox(
@@ -200,6 +203,7 @@ class OrderDetailsView extends GetView<LocationsController> {
                                         textAlign: TextAlign.center,
                                         '${'building_number'.tr}: ${chosenLocation.buildingNumber} , ${'floor_number'.tr}: ${chosenLocation.floorNumber}',
                                         style: TextStyle(
+                                            fontSize: 15.0,
                                             fontWeight: FontWeight.bold,
                                             color: MYColor.primary),
                                       ),
@@ -264,6 +268,7 @@ class OrderDetailsView extends GetView<LocationsController> {
                                               .name!
                                               .ar!,
                                       style: TextStyle(
+                                          fontSize: 15.0,
                                           fontWeight: FontWeight.bold,
                                           color: MYColor.primary),
                                     ),
@@ -302,6 +307,7 @@ class OrderDetailsView extends GetView<LocationsController> {
                                                 .name!
                                                 .ar!,
                                         style: TextStyle(
+                                            fontSize: 15.0,
                                             fontWeight: FontWeight.bold,
                                             color: MYColor.primary)),
                                   ],
@@ -322,6 +328,7 @@ class OrderDetailsView extends GetView<LocationsController> {
                                         serviceTypeController.maidsNumber.value
                                             .toString(),
                                         style: TextStyle(
+                                            fontSize: 15.0,
                                             fontWeight: FontWeight.bold,
                                             color: MYColor.primary))
                                   ],
@@ -364,7 +371,8 @@ class OrderDetailsView extends GetView<LocationsController> {
                                         //  3 => 'Bank transfer',
                                         //  4 => 'MADA',
                                         //      ];
-                                        serviceTypeController.submitHourlyOrder(context,
+                                        serviceTypeController.submitHourlyOrder(
+                                            context,
                                             datePickerController
                                                 .selectedDate.value,
                                             packageController

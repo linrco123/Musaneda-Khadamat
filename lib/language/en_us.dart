@@ -128,6 +128,7 @@ const Map<String, String> enUS = {
   "confirmation": "Confirmation",
   "payment": "Payment",
   "city": "City",
+  "district":"District",
   "address": "Address",
   "pick_up_branch": "Pickup branch",
   "rent_ended": "Rent ended",
@@ -162,6 +163,7 @@ const Map<String, String> enUS = {
   "rejected": "Rejected",
   "rejected_msg": "Your order is rejected",
   "msg_select_city": "Please select city!",
+  "msg_select_district": "Please select District!",
   "msg_select_branch": "Please select branch!",
   "msg_select_location": "Please select location!",
   "order_success_msg": "Order sent successfully",
@@ -311,7 +313,7 @@ const Map<String, String> enUS = {
   "no_tickets_found": "No complaints yet",
     'select_piority':"Please , select priority",
 
-  "you_have_no_locations_yet": "You have no locations yet !",
+  "you_have_no_locations_yet": "No locations yet !",
   "you_have_unexpired_contract": "You have unexpired contract",
   "loading": "Loading...",
   "success_login": "Welcome to Musaneda",
@@ -436,11 +438,11 @@ const Map<String, String> enUS = {
   'confirm_address': 'Confirm Address',
   //"choose_nationality"  "choose_visit_number" "choose_working_hour" "choose_shift_type" "choose_maid_number"
 
-  "choose_nationality": "Choose nationality",
-  "choose_visit_number": "Choose visits number",
-  "choose_working_hour": "Choose working hour",
-  "choose_shift_type": "Choose shift type",
-  "choose_maid_number": "Choose Musaneda number",
+  "choose_nationality": "Please, choose nationality!",
+  "choose_visit_number": "Please, choose visits number!",
+  "choose_working_hour": "Please, choose working hour!",
+  "choose_shift_type": "Please, choose shift type!",
+  "choose_maid_number": "Please, choose Musaneda number!",
   //"insert_address_name".tr,:"Please insert address name"
   "insert_address_name": "Please insert address name",
   "insert_street_name": "Please insert street name",
@@ -507,4 +509,5 @@ const Map<String, String> enUS = {
   "delegations_empty":"No Delegations Yet !",
   'have_no_account':'You don\'t have an account yet !',
   "see_personal_data":'If you wish to display your personal data , you should log in or sign up first',
+  'service_restricted_riyad':'Hourly Service is restricted upon just Riyad',
 };

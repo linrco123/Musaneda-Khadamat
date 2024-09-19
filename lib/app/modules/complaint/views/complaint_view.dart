@@ -73,7 +73,7 @@ class ComplaintView extends GetView<ComplaintController> {
                               "there_are_no_results".tr,
                               style: TextStyle(
                                 fontSize: 16,
-                                color: MYColor.grey,
+                                color: Colors.grey.shade300,
                                 fontFamily: 'cairo_regular',
                               ),
                             ),

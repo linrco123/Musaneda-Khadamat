@@ -43,7 +43,7 @@ class LocationsView extends GetView<LocationsController> {
                 Text(
                   "location".tr,
                   style: TextStyle(
-                    color: MYColor.primary,
+                    color: MYColor.black,
                     fontSize: 16,
                     fontFamily: 'cairo_medium',
                   ),
@@ -89,7 +89,7 @@ class LocationsView extends GetView<LocationsController> {
                 if (controller.listLocations.isEmpty) {
                   return Center(
                     child: Text("you_have_no_locations_yet".tr,
-                        style: TextStyle(color: MYColor.grey, fontSize: 18.0)),
+                        style:Theme.of(context).textTheme.bodyMedium,),
                   );
                 }
 

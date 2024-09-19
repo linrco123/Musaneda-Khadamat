@@ -19,7 +19,7 @@ mySnackBar({
       margin: const EdgeInsets.only(left: 20, right: 20, top: 100),
       borderRadius: 8,
       animationDuration: const Duration(milliseconds: 1000),
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1500),
       icon: Icon(icon, color: MYColor.white),
       leftBarIndicatorColor: MYColor.primary,
       shouldIconPulse: true,

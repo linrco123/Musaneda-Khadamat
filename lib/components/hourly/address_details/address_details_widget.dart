@@ -6,7 +6,8 @@ class AddressDetailsWidget extends StatelessWidget {
   final String title;
   final TextEditingController controler;
   final TextInputType textInputType;
-  const AddressDetailsWidget({super.key, required this.title, required this.controler, required this.textInputType});
+  final bool isEnabled;
+  const AddressDetailsWidget({super.key, required this.title, required this.controler, required this.textInputType, required this.isEnabled , });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class AddressDetailsWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold),
           ),
         ),
-        CustomedTextField(context, controler, title , textInputType),
+        CustomedTextField(context, controler, title , textInputType , isEnabled),
       ],
     );
   }

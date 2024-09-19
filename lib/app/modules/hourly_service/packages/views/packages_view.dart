@@ -42,7 +42,7 @@ class PackagesView extends GetView<PackagesController> {
                   const SizedBox(height: 15),
                   Text(
                     "the_packages_is_empty".tr,
-                    style: TextStyle(color: MYColor.grey, fontSize: 18.0),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ])
               : Column(

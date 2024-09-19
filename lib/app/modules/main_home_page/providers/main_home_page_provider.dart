@@ -19,7 +19,7 @@ class MainHomePageProvider extends GetConnect {
         "Authorization": "Bearer ${Constance.getToken()}",
       },
     );
-
+     print(response.body);
     if (response.status.hasError) {
       return Future.error(response.statusText!);
     } else {

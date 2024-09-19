@@ -128,28 +128,33 @@ class App extends StatelessWidget {
       locale: Locale(LanguageController.I.getLocale),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: true,
-        primaryColor: MYColor.primary,
-        fontFamily: 'cairo_regular',
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: MYColor.primary,
-          secondary: MYColor.black,
-        ),
-        scaffoldBackgroundColor: MYColor.background,
-        appBarTheme: AppBarTheme(
-          elevation: 0,
-          centerTitle: true,
-          iconTheme: IconThemeData(
-            color: MYColor.white,
-            size: 20,
+          useMaterial3: true,
+          primaryColor: MYColor.primary,
+          fontFamily: 'cairo_regular',
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: MYColor.primary,
+            secondary: MYColor.black,
           ),
-          titleTextStyle: TextStyle(
+          scaffoldBackgroundColor: MYColor.background,
+          appBarTheme: AppBarTheme(
+            elevation: 0,
+            centerTitle: true,
+            iconTheme: IconThemeData(
+              color: MYColor.white,
+              size: 20,
+            ),
+            titleTextStyle: TextStyle(
+              fontFamily: 'cairo_regular',
+              color: MYColor.white,
+              fontSize: 16,
+            ),
+          ),
+          textTheme: TextTheme(
+              bodyMedium: TextStyle(
+            color: Colors.grey.shade300,
+            fontSize: 20.0,
             fontFamily: 'cairo_regular',
-            color: MYColor.white,
-            fontSize: 16,
-          ),
-        ),
-      ),
+          ))),
       initialBinding: RootBinding(),
     );
   }

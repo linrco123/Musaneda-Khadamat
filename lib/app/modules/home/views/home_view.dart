@@ -483,8 +483,9 @@ class HomeView extends GetView<HomeController> {
                             const SizedBox(width: 20),
                             Text(
                               LanguageController.I.lang[i].tr,
-                              style: const TextStyle(
+                              style:   TextStyle(
                                 fontSize: 14,
+                                color: MYColor.grey
                               ),
                             ),
                             const Spacer(),
@@ -629,6 +630,7 @@ class HomeView extends GetView<HomeController> {
                       : 'guest'.tr,
                   style: const TextStyle(
                     color: Colors.white,
+                    fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -7,8 +7,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:musaneda/app/controllers/language_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/address_details/views/address_details.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
+import 'package:musaneda/app/modules/hourly_service/service_type/models/districts_model.dart';
 import 'package:musaneda/app/modules/locations/locations_model.dart';
 import 'package:musaneda/app/modules/locations/providers/locations_provider.dart';
 import 'package:musaneda/app/modules/order/controllers/order_controller.dart';
@@ -22,9 +24,10 @@ import '../../../../components/myCupertinoButton.dart';
 
 class LocationsController extends GetxController {
   static LocationsController get I => Get.put(LocationsController());
-  TextEditingController txtTitle =
-      TextEditingController(); //use this controller for address name in hour service
+  TextEditingController txtTitle = TextEditingController();
   TextEditingController txtNotes = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController districtController = TextEditingController();
   TextEditingController buildingController = TextEditingController();
   TextEditingController floorController = TextEditingController();
   var isLoading = false.obs;
@@ -35,12 +38,12 @@ class LocationsController extends GetxController {
     update();
   }
 
-  var serviceTypeController = Get.put(ServiceTypeController());
+  final serviceTypeController = Get.put(ServiceTypeController());
   @override
   void onInit() {
     getLocations();
     determinePosition();
-      getCurrentLocation();
+    switchBetweenSystems();
     super.onInit();
   }
 
@@ -94,7 +97,64 @@ class LocationsController extends GetxController {
     );
     update();
   }
-  setCity(String chosenCity){
+
+  void getDistrictLocation(latitude, longitude) async {
+    final GoogleMapController controller = await gMC.future;
+    controller.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(
+            latitude,
+            longitude,
+          ),
+          zoom: initZoom,
+        ),
+      ),
+    );
+    update();
+  }
+
+  void switchBetweenSystems() {
+    print(
+        '===============================cityController.text ====================================');
+    print(cityController.text.isEmpty);
+
+    if (Get.previousRoute == Routes.DATEPICKER) {
+      cityController.text = LanguageController.I.isEnglish
+          ? serviceTypeController.listCities
+              .where(
+                  (element) => element.id == serviceTypeController.city.value)
+              .toList()
+              .first
+              .name!
+              .en!
+          : serviceTypeController.listCities
+              .where(
+                  (element) => element.id == serviceTypeController.city.value)
+              .toList()
+              .first
+              .name!
+              .ar!;
+
+      DistrictsData districtsData = serviceTypeController.listDistricts
+          .where(
+              (element) => element.id == serviceTypeController.district.value)
+          .toList()
+          .first;
+      districtController.text = LanguageController.I.isEnglish
+          ? districtsData.title!.en!
+          : districtsData.title!.ar!;
+      print('cityController.text ${cityController.text}');
+      print('cityController.text ${districtController.text}');
+      print('districtsData.latitude ${districtsData.latitude}');
+      print('districtsData.longitude.text ${districtsData.longitude}');
+      getDistrictLocation(districtsData.latitude, districtsData.longitude);
+    } else {
+      getCurrentLocation();
+    }
+  }
+
+  setCity(String chosenCity) {
     city.value = chosenCity;
   }
 
@@ -110,6 +170,7 @@ class LocationsController extends GetxController {
   var street = ''.obs;
   var addressName = ''.obs;
   var zipCode = ''.obs;
+  var district = ''.obs;
   final box = GetStorage();
 
   void getAddress(LatLng position) async {
@@ -162,6 +223,7 @@ class LocationsController extends GetxController {
     street.value = first.street!;
     addressName.value = first.name!;
     zipCode.value = first.postalCode!;
+    district.value = first.administrativeArea!;
 
     update();
   }
@@ -184,7 +246,7 @@ class LocationsController extends GetxController {
     } else if (page == 'hour' && myLocation != null) {
       txtTitle.text = name.value;
       txtNotes.text = address.value;
-      Get.to(()=>const AddressDetailsView());
+      Get.to(() => const AddressDetailsView());
     } else {
       mySnackBar(
         title: "warning".tr,
@@ -477,8 +539,8 @@ class LocationsController extends GetxController {
 //should add street name,building #,floor #,zipcode
   void postLocations(String page) {
     Map data = {
-      "address": address.value,
-      "city": city.value,
+      "address": page == 'hour' ? getAddressWithDistrictForHour : getAddressWithDistrictForMoquima,
+      "city": page == 'hour' ? cityController.text : city.value,
       "country": country.value,
       "latitude": latitude.value,
       "longitude": longitude.value,
@@ -510,8 +572,10 @@ class LocationsController extends GetxController {
     update();
   }
 
-  String get getStreetBuildingFloorZipcode =>
-      '${country.value}, ${city.value}, ${subLocality.value}.Building: ${buildingController.text.trim()}.Floor: ${floorController.text.trim()}';
+  String get getAddressWithDistrictForHour =>
+      '${address.value}, ${districtController.text}';
+      String get getAddressWithDistrictForMoquima =>
+      '${address.value}, ${district.value}';
 
   void postHourlyLocation(String page) {
     if (txtTitle.text.isEmpty) {

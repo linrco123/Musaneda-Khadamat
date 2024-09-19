@@ -39,10 +39,7 @@ class HourOrdersView extends GetView<ServiceTypeController> {
                             child: Text(
                               textAlign: TextAlign.center,
                               'no_hour_orders'.tr,
-                              style: TextStyle(
-                                  fontFamily: 'cairo_regular',
-                                  color: MYColor.grey,
-                                  fontSize: 18.0),
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           )
                         : Expanded(

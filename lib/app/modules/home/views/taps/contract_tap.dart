@@ -63,7 +63,7 @@ Widget contractsTap(context) {
                 return TabBarView(
                   children: [
                     ctrHome.listContracts.isEmpty
-                        ? Center(child: Text("no_contracts".tr,style: TextStyle(color: MYColor.grey, fontSize: 18.0),))
+                        ? Center(child: Text("no_contracts".tr,style: Theme.of(context).textTheme.bodyMedium,))
                         : ListView.builder(
                             itemCount: ctrHome.listContracts.length,
                             itemBuilder: (ctx, i) {
@@ -87,7 +87,7 @@ Widget contractsTap(context) {
                             },
                           ),
                     ctrHome.listActive.isEmpty
-                        ? Center(child: Text('no_active_contracts'.tr,style: TextStyle(color: MYColor.grey, fontSize: 18.0)))
+                        ? Center(child: Text('no_active_contracts'.tr,style: Theme.of(context).textTheme.bodyMedium,))
                         : ListView.builder(
                             itemCount: ctrHome.listActive.length,
                             itemBuilder: (ctx, i) {
@@ -110,7 +110,7 @@ Widget contractsTap(context) {
                             },
                           ),
                     ctrHome.listFinished.isEmpty
-                        ? Center(child: Text('no_expired_contracts'.tr,style: TextStyle(color: MYColor.grey, fontSize: 18.0)))
+                        ? Center(child: Text('no_expired_contracts'.tr,style: Theme.of(context).textTheme.bodyMedium,))
                         : ListView.builder(
                             itemCount: ctrHome.listFinished.length,
                             itemBuilder: (ctx, i) {

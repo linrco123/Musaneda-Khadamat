@@ -123,7 +123,7 @@ class ShowAddressessView extends GetView<LocationsController> {
                   ),
                   Text(
                     'choose_address'.tr,
-                    style: TextStyle(color: MYColor.primary, fontSize: 18.0),
+                    style: TextStyle(color: MYColor.black,fontWeight: FontWeight.bold, fontSize: 18.0),
                   ),
                 ],
               ),
@@ -144,10 +144,7 @@ class ShowAddressessView extends GetView<LocationsController> {
                             const SizedBox(height: 15),
                             Text(
                               'no_addressess'.tr,
-                              style: TextStyle(
-                                  fontFamily: 'cairo_regular',
-                                  color: MYColor.grey,
-                                  fontSize: 18.0),
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ]))
                     : ListView.separated(
