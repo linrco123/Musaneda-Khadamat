@@ -42,25 +42,6 @@ Future<void> processOrderBatch(ISentrySpan span) async {
     await innerSpan.finish();
   }
 }
-
-void registerPushNotification() async {
-  //create instance to receive message from FCM
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
-  //request for Permission
-  final notificationSettings = await messaging.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    // this should be set to false as to get full granted permission
-    sound: true,
-  );
-
-  // _registerDevice(notificationSettings);
-}
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -87,15 +68,6 @@ Future<void> main() async {
   configLoading();
   performance();
 }
-
-connectivity() async {
-  if (await (Connectivity().checkConnectivity()) == ConnectivityResult.none) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
 /*
  * initialRoute() return initial route
  * if user is auth return main page

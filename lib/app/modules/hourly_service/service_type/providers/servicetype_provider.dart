@@ -55,10 +55,7 @@ class ServiceTypeProvider extends GetConnect {
           "Authorization": "Bearer ${Constance.getToken()}",
         },
       );
-      Future.delayed(const Duration( seconds: 20)).then((value) async {
-        await EasyLoading.dismiss();
-      });
-
+      await EasyLoading.dismiss();
       final response = json.decode(res.body);
       if (response['code'] == 0) {
         mySnackBar(

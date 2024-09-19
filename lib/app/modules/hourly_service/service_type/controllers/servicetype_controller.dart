@@ -357,8 +357,9 @@ class ServiceTypeController extends GetxController {
   }
 
   List<DistrictsData> listDistricts = List<DistrictsData>.empty(growable: true);
-   void getDistricts(int cityID)   {
+  void getDistricts(int cityID) {
     isLoading(true);
+    setDistrict = 0;
     listDistricts.clear();
     listDistricts.add(
       DistrictsData(
@@ -382,7 +383,7 @@ class ServiceTypeController extends GetxController {
       await EasyLoading.dismiss();
     });
 
-   // update();
+    // update();
   }
 
   set setDistrict(setDistrict) {
