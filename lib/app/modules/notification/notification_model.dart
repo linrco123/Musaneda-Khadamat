@@ -7,17 +7,17 @@ class FirebaseMessageModel {
 
   FirebaseMessageModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
-    data = json['data']['notifications'] != [] ? new Data.fromJson(json['data']) : null;
+    data = json['data']['notifications'] != [] ? Data.fromJson(json['data']) : null;
     code = json['code'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['msg'] = this.msg;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['msg'] = msg;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['code'] = this.code;
+    data['code'] = code;
     return data;
   }
 }
@@ -32,22 +32,22 @@ class Data {
     if (json['notifications'] != null) {
       notifications = <Notifications>[];
       json['notifications'].forEach((v) {
-        notifications!.add(new Notifications.fromJson(v));
+        notifications!.add(Notifications.fromJson(v));
       });
     }
     pagination = json['pagination'] != null
-        ? new Pagination.fromJson(json['pagination'])
+        ? Pagination.fromJson(json['pagination'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.notifications != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (notifications != null) {
       data['notifications'] =
-          this.notifications!.map((v) => v.toJson()).toList();
+          notifications!.map((v) => v.toJson()).toList();
     }
-    if (this.pagination != null) {
-      data['pagination'] = this.pagination!.toJson();
+    if (pagination != null) {
+      data['pagination'] = pagination!.toJson();
     }
     return data;
   }
@@ -66,19 +66,19 @@ class Notifications {
     id = json['id'];
     type = json['type'];
     servantId = json['servant_id'];
-    data = json['data'] != null ? new NotificationData.fromJson(json['data']) : null;
+    data = json['data'] != null ? NotificationData.fromJson(json['data']) : null;
     readAt = json['read_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['type'] = this.type;
-    data['servant_id'] = this.servantId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['type'] = type;
+    data['servant_id'] = servantId;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['read_at'] = this.readAt;
+    data['read_at'] = readAt;
     return data;
   }
 }
@@ -95,9 +95,9 @@ class NotificationData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['message'] = message;
     return data;
   }
 }
@@ -128,13 +128,13 @@ class Pagination {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['total'] = this.total;
-    data['per_page'] = this.perPage;
-    data['current_page'] = this.currentPage;
-    data['last_page'] = this.lastPage;
-    data['next_page_url'] = this.nextPageUrl;
-    data['prev_page_url'] = this.prevPageUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['total'] = total;
+    data['per_page'] = perPage;
+    data['current_page'] = currentPage;
+    data['last_page'] = lastPage;
+    data['next_page_url'] = nextPageUrl;
+    data['prev_page_url'] = prevPageUrl;
     return data;
   }
 }

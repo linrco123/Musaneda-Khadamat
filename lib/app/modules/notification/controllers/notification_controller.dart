@@ -320,7 +320,6 @@ class NotificationController extends GetxController {
       isLoading(false);
       update();
     });
-    ;
   }
 
   void getMoreNotifications() {

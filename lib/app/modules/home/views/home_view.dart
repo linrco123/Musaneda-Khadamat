@@ -544,7 +544,7 @@ class HomeView extends GetView<HomeController> {
               Text('have_no_account'.tr,
                   style: TextStyle(
                       fontSize: 20.0,
-                      color: MYColor.white,
+                      color: MYColor.btnTxtColor,
                       fontFamily: 'cairo_regular',
                       fontWeight: FontWeight.bold)),
               const SizedBox(
@@ -555,7 +555,7 @@ class HomeView extends GetView<HomeController> {
                   "see_personal_data".tr,
                   style: TextStyle(
                       fontSize: 20.0,
-                      color: MYColor.white,
+                      color: MYColor.btnTxtColor,
                       fontFamily: 'cairo_regular',
                       fontWeight: FontWeight.bold)),
               const SizedBox(height: 10.0),
@@ -582,7 +582,7 @@ class HomeView extends GetView<HomeController> {
                     child: Text(
                       'go'.tr,
                       style: TextStyle(
-                          color: MYColor.white,
+                          color: MYColor.btnTxtColor,
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold),
                     )),

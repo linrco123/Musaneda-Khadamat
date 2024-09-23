@@ -15,10 +15,8 @@ class HourOrderModel {
     Map<String, dynamic> toJson() {
         final Map<String, dynamic> data = <String, dynamic>{};
         data["msg"] = msg;
-        if(data != null) {
-          //  data["data"] = data?.toJson();
-        }
-        data["code"] = code;
+        //  data["data"] = data?.toJson();
+              data["code"] = code;
         return data;
     }
 }

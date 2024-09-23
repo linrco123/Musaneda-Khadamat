@@ -129,7 +129,6 @@ class NotificationView extends GetView<NotificationController> {
                             ],
                           ),
                         );
-                        ;
                       },
                     ),
                   ),

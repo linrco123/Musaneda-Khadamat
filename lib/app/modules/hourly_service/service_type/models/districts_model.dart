@@ -11,15 +11,15 @@ class DistrictModel {
     if (json['data'] != null) {
       data = <DistrictsData>[];
       json['data'].forEach((v) {
-        data!.add(new DistrictsData.fromJson(v));
+        data!.add(DistrictsData.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    data['code'] = this.code;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    data['code'] = code;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -38,21 +38,21 @@ class DistrictsData {
 
   DistrictsData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'] != null ? new TitleLang.fromJson(json['title']) : null;
+    title = json['title'] != null ? TitleLang.fromJson(json['title']) : null;
     longitude = json['longitude'];
     latitude = json['latitude'];
     city = json['city'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.title != null) {
-      data['title'] = this.title!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (title != null) {
+      data['title'] = title!.toJson();
     }
-    data['longitude'] = this.longitude;
-    data['latitude'] = this.latitude;
-    data['city'] = this.city;
+    data['longitude'] = longitude;
+    data['latitude'] = latitude;
+    data['city'] = city;
     return data;
   }
 }
@@ -69,9 +69,9 @@ class TitleLang {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['ar'] = this.ar;
-    data['en'] = this.en;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['ar'] = ar;
+    data['en'] = en;
     return data;
   }
 }
