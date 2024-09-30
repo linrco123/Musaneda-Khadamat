@@ -22,7 +22,6 @@ import '../../custom_payment/controllers/custom_payment_controller.dart';
 import '../../home/controllers/home_controller.dart';
 import '../../home/musaneda_model.dart';
 import '../../locations/views/create_location_view.dart';
-import '../controllers/amazonpayment_controller.dart';
 import '../controllers/order_controller.dart';
 import 'bank_account/bank_accounts_details_view.dart';
 
@@ -31,7 +30,7 @@ class OrderView extends GetView<OrderController> {
 
   @override
   Widget build(BuildContext context) {
-    final amazonController = Get.put(() => AmazonPayController());
+    //final amazonController = Get.put(() => AmazonPayController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MYColor.transparent,

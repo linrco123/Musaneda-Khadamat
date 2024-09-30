@@ -22,14 +22,6 @@ packages:
     description: dart
     source: sdk
     version: "0.3.2"
-  amazon_payfort:
-    dependency: "direct main"
-    description:
-      name: amazon_payfort
-      sha256: "22b37bd6d142abc59dea3f6064d90f6040efd5143cdfcda514fc797bf56c74ab"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
   analyzer:
     dependency: transitive
     description:

@@ -1,5 +1,4 @@
-import 'package:amazon_payfort/amazon_payfort.dart';
-
+ 
 class AmazonPayConfigue {
   AmazonPayConfigue._();
 
@@ -7,9 +6,9 @@ class AmazonPayConfigue {
 
   static const String merchantIdentifierProduction = 'VgUKVecj';
 
-  static const FortEnvironment testEnviroment = FortEnvironment.test;
+  // static const FortEnvironment testEnviroment = FortEnvironment.test;
 
-  static const FortEnvironment productionEnviroment = FortEnvironment.production;
+  // static const FortEnvironment productionEnviroment = FortEnvironment.production;
 
   // For Debit/Credit Card Test
   static const String accessCode = 'FvdREW0GwzxGp3uPFxFe';

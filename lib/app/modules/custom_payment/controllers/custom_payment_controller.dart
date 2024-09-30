@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -12,16 +11,9 @@ import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/constance.dart';
 import 'package:musaneda/config/myColor.dart';
 import 'package:path/path.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../routes/app_pages.dart';
 import '../../main_home_page/controllers/main_home_page_controller.dart';
-import '../../order/controllers/amazonpayment_controller.dart';
-import '../../order/controllers/tabby_stc_controllers/stc_controller.dart';
-import '../../order/controllers/tabby_stc_controllers/tabby_controller.dart';
-import '../../order/views/tabby_stc_paymentview/stc_payment_view.dart';
-import '../../order/views/tabby_stc_paymentview/tabby_payment_view.dart';
 
 class CustomPaymentController extends GetxController {
   static CustomPaymentController get I => Get.put(CustomPaymentController());
@@ -115,169 +107,169 @@ class CustomPaymentController extends GetxController {
     return true;
   }
 
-  Future<void> payWithAmazon({bool isFake = false}) async {
-    var amazonPay = Get.put(AmazonPayController());
+  // Future<void> payWithAmazon({bool isFake = false}) async {
+  //   var amazonPay = Get.put(AmazonPayController());
 
-    if (!isFake) {
-      try {
-        final transactionId = await amazonPay.transactionIdProvider
-            .updateTransactionId(
-                transactionId: const Uuid().v4(),
-                orderId: OrderController.I.orderID);
-        OrderController.I.merchantTransactionID =
-            transactionId.data!.transactionId!;
-      } catch (e, s) {
-        await Sentry.captureException(e, stackTrace: s);
-      }
-    }
+  //   if (!isFake) {
+  //     try {
+  //       final transactionId = await amazonPay.transactionIdProvider
+  //           .updateTransactionId(
+  //               transactionId: const Uuid().v4(),
+  //               orderId: OrderController.I.orderID);
+  //       OrderController.I.merchantTransactionID =
+  //           transactionId.data!.transactionId!;
+  //     } catch (e, s) {
+  //       await Sentry.captureException(e, stackTrace: s);
+  //     }
+  //   }
 
-    if (OrderController.I.paymentMethod.value != 10 ||
-        OrderController.I.tabbyOption.value == true) {
-      if (OrderController.I.tabbyOption.value) {
-        Get.put(TabbyPaymentController());
-        Get.to(const TabbyPaymentView(), arguments: [
-          OrderController.I.merchantTransactionID,
-          OrderController.I.orderID
-        ]);
-      } else {
-        if (OrderController.I.paymentMethod.value == 0 ||
-            OrderController.I.paymentMethod.value == 1) {
-          //credit card - MADA
-          AmazonPayController.I.paymentWithCreditOrDebitCard(
-            onSucceeded: (result) async {
-              mySnackBar(
-                title: "success".tr,
-                message: "payment_success".tr,
-                color: MYColor.success,
-                icon: CupertinoIcons.info_circle,
-              );
-              if (!isFake) {
-                await CustomPaymentProvider().sendTransactionPay(
-                  transactionId:
-                      OrderController.I.merchantTransactionID.toString(),
-                  orderId: OrderController.I.orderID,
-                  paymentOption: 'Credit Card',
-                );
-                Get.offAllNamed(Routes.HOME);
-              } else {
-                if (isPayOrder.value) {
-                  MainHomePageController.I
-                      .payOrder(isPaid: false, showSuccess: true);
-                } else {
-                  MainHomePageController.I.postOrderToServer(context,
-                      isPaid: true, showSuccess: true);
-                }
-              }
-            },
-            onFailed: (error) {
-              mySnackBar(
-                title: "error".tr,
-                message: "payment_failed".tr,
-                color: MYColor.warning,
-                icon: CupertinoIcons.info_circle,
-              );
-              log('  onFailed: (error) { credited card ');
-              if (isFake) {
-                if (isPayOrder.value) {
-                  MainHomePageController.I.payOrder(
-                    isPaid: false,
-                  );
-                }
-                MainHomePageController.I
-                    .postOrderToServer(context, isPaid: false);
-              }
-            },
-            onCancelled: () {
-              log('  onCancelled: (error) { credited card ');
-              mySnackBar(
-                title: "error".tr,
-                message: "payment_failed".tr,
-                color: MYColor.warning,
-                icon: CupertinoIcons.info_circle,
-              );
-              if (isFake) {
-                if (isPayOrder.value) {
-                  MainHomePageController.I.payOrder(
-                    isPaid: false,
-                  );
-                }
-                MainHomePageController.I
-                    .postOrderToServer(context, isPaid: false);
-              }
-            },
-            amount: isFake
-                ? MainHomePageController.I.finalPrice.toInt()
-                : OrderController.I.packagesData.total!.toInt(),
-            customerEmail: Constance.instance.email,
-            customerName: Constance.instance.name,
-            phoneNumber: Constance.instance.phone,
-            merchantReference: OrderController.I.merchantTransactionID,
-          );
-        } else if (OrderController.I.paymentMethod.value == 2) {
-          AmazonPayController.I.paymentWithApplePay(
-            onSucceeded: (result) async {
-              mySnackBar(
-                title: "success".tr,
-                message: "payment_success".tr,
-                color: MYColor.success,
-                icon: CupertinoIcons.info_circle,
-              );
-              if (!isFake) {
-                await CustomPaymentProvider().sendTransactionPay(
-                  transactionId:
-                      OrderController.I.merchantTransactionID.toString(),
-                  orderId: OrderController.I.orderID,
-                  // from transactionId to orderId
-                  paymentOption: 'Apple',
-                );
-                Get.offAllNamed(Routes.HOME);
-              } else {
-                if (isPayOrder.value) {
-                  MainHomePageController.I.payOrder(
-                    isPaid: false,
-                  );
-                }
-                MainHomePageController.I
-                    .postOrderToServer(context, isPaid: true);
-              }
-            },
-            onFailed: (error) {
-              mySnackBar(
-                title: "error".tr,
-                message: "payment_failed".tr,
-                color: MYColor.warning,
-                icon: CupertinoIcons.info_circle,
-              );
-              if (isFake) {
-                if (isPayOrder.value) {
-                  MainHomePageController.I.payOrder(
-                    isPaid: false,
-                  );
-                }
-                MainHomePageController.I
-                    .postOrderToServer(context, isPaid: false);
-              }
-            },
-            amount: isFake
-                ? MainHomePageController.I.finalPrice.toInt()
-                : OrderController.I.packagesData.total!.toInt(),
-            customerEmail: Constance.instance.email,
-            customerName: Constance.instance.name,
-            phoneNumber: Constance.instance.phone,
-            merchantReference: OrderController.I.merchantTransactionID,
-          );
-        } else {
-          Get.put(StcPayPaymentController());
-          Get.to(const STCPaymentView(), arguments: [
-            OrderController.I.merchantTransactionID,
-            OrderController.I.orderID
-          ]);
-        }
-      }
-    } else {
-      OrderController.I.checkOrder(isDone: false);
-    }
-  }
+  //   if (OrderController.I.paymentMethod.value != 10 ||
+  //       OrderController.I.tabbyOption.value == true) {
+  //     if (OrderController.I.tabbyOption.value) {
+  //       Get.put(TabbyPaymentController());
+  //       Get.to(const TabbyPaymentView(), arguments: [
+  //         OrderController.I.merchantTransactionID,
+  //         OrderController.I.orderID
+  //       ]);
+  //     } else {
+  //       if (OrderController.I.paymentMethod.value == 0 ||
+  //           OrderController.I.paymentMethod.value == 1) {
+  //         //credit card - MADA
+  //         AmazonPayController.I.paymentWithCreditOrDebitCard(
+  //           onSucceeded: (result) async {
+  //             mySnackBar(
+  //               title: "success".tr,
+  //               message: "payment_success".tr,
+  //               color: MYColor.success,
+  //               icon: CupertinoIcons.info_circle,
+  //             );
+  //             if (!isFake) {
+  //               await CustomPaymentProvider().sendTransactionPay(
+  //                 transactionId:
+  //                     OrderController.I.merchantTransactionID.toString(),
+  //                 orderId: OrderController.I.orderID,
+  //                 paymentOption: 'Credit Card',
+  //               );
+  //               Get.offAllNamed(Routes.HOME);
+  //             } else {
+  //               if (isPayOrder.value) {
+  //                 MainHomePageController.I
+  //                     .payOrder(isPaid: false, showSuccess: true);
+  //               } else {
+  //                 MainHomePageController.I.postOrderToServer(context,
+  //                     isPaid: true, showSuccess: true);
+  //               }
+  //             }
+  //           },
+  //           onFailed: (error) {
+  //             mySnackBar(
+  //               title: "error".tr,
+  //               message: "payment_failed".tr,
+  //               color: MYColor.warning,
+  //               icon: CupertinoIcons.info_circle,
+  //             );
+  //             log('  onFailed: (error) { credited card ');
+  //             if (isFake) {
+  //               if (isPayOrder.value) {
+  //                 MainHomePageController.I.payOrder(
+  //                   isPaid: false,
+  //                 );
+  //               }
+  //               MainHomePageController.I
+  //                   .postOrderToServer(context, isPaid: false);
+  //             }
+  //           },
+  //           onCancelled: () {
+  //             log('  onCancelled: (error) { credited card ');
+  //             mySnackBar(
+  //               title: "error".tr,
+  //               message: "payment_failed".tr,
+  //               color: MYColor.warning,
+  //               icon: CupertinoIcons.info_circle,
+  //             );
+  //             if (isFake) {
+  //               if (isPayOrder.value) {
+  //                 MainHomePageController.I.payOrder(
+  //                   isPaid: false,
+  //                 );
+  //               }
+  //               MainHomePageController.I
+  //                   .postOrderToServer(context, isPaid: false);
+  //             }
+  //           },
+  //           amount: isFake
+  //               ? MainHomePageController.I.finalPrice.toInt()
+  //               : OrderController.I.packagesData.total!.toInt(),
+  //           customerEmail: Constance.instance.email,
+  //           customerName: Constance.instance.name,
+  //           phoneNumber: Constance.instance.phone,
+  //           merchantReference: OrderController.I.merchantTransactionID,
+  //         );
+  //       } else if (OrderController.I.paymentMethod.value == 2) {
+  //         AmazonPayController.I.paymentWithApplePay(
+  //           onSucceeded: (result) async {
+  //             mySnackBar(
+  //               title: "success".tr,
+  //               message: "payment_success".tr,
+  //               color: MYColor.success,
+  //               icon: CupertinoIcons.info_circle,
+  //             );
+  //             if (!isFake) {
+  //               await CustomPaymentProvider().sendTransactionPay(
+  //                 transactionId:
+  //                     OrderController.I.merchantTransactionID.toString(),
+  //                 orderId: OrderController.I.orderID,
+  //                 // from transactionId to orderId
+  //                 paymentOption: 'Apple',
+  //               );
+  //               Get.offAllNamed(Routes.HOME);
+  //             } else {
+  //               if (isPayOrder.value) {
+  //                 MainHomePageController.I.payOrder(
+  //                   isPaid: false,
+  //                 );
+  //               }
+  //               MainHomePageController.I
+  //                   .postOrderToServer(context, isPaid: true);
+  //             }
+  //           },
+  //           onFailed: (error) {
+  //             mySnackBar(
+  //               title: "error".tr,
+  //               message: "payment_failed".tr,
+  //               color: MYColor.warning,
+  //               icon: CupertinoIcons.info_circle,
+  //             );
+  //             if (isFake) {
+  //               if (isPayOrder.value) {
+  //                 MainHomePageController.I.payOrder(
+  //                   isPaid: false,
+  //                 );
+  //               }
+  //               MainHomePageController.I
+  //                   .postOrderToServer(context, isPaid: false);
+  //             }
+  //           },
+  //           amount: isFake
+  //               ? MainHomePageController.I.finalPrice.toInt()
+  //               : OrderController.I.packagesData.total!.toInt(),
+  //           customerEmail: Constance.instance.email,
+  //           customerName: Constance.instance.name,
+  //           phoneNumber: Constance.instance.phone,
+  //           merchantReference: OrderController.I.merchantTransactionID,
+  //         );
+  //       } else {
+  //         Get.put(StcPayPaymentController());
+  //         Get.to(const STCPaymentView(), arguments: [
+  //           OrderController.I.merchantTransactionID,
+  //           OrderController.I.orderID
+  //         ]);
+  //       }
+  //     }
+  //   } else {
+  //     OrderController.I.checkOrder(isDone: false);
+  //   }
+  // }
 
   Map getBody(entityID, amount) {
     setMerchantTransactionID();
