@@ -68,8 +68,9 @@ class HomeController extends GetxController {
           if (request.url
               .startsWith(Constance.privacyLinkEn.split('en').first)) {
             return NavigationDecision.navigate;
+          } else {
+            return NavigationDecision.prevent;
           }
-          return NavigationDecision.prevent;
         },
       ),
     )
@@ -96,8 +97,9 @@ class HomeController extends GetxController {
         onNavigationRequest: (NavigationRequest request) {
           if (request.url.startsWith(Constance.technicalSupport_Url)) {
             return NavigationDecision.navigate;
+          } else {
+            return NavigationDecision.prevent;
           }
-          return NavigationDecision.prevent;
         },
       ),
     )
@@ -422,10 +424,12 @@ class HomeController extends GetxController {
   var listFilter = List<MusanedaData>.empty(growable: true).obs;
 
   Future<void> getFilter() async {
-    if(Constance.getToken().isEmpty){
+    if (Constance.getToken().isEmpty) {
       Get.back();
-      Future.delayed(const Duration(milliseconds: 600),).then((value){
-         showLoginSignupDialogue(Get.context);
+      Future.delayed(
+        const Duration(milliseconds: 600),
+      ).then((value) {
+        showLoginSignupDialogue(Get.context);
       });
       return;
     }

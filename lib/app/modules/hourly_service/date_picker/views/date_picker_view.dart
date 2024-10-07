@@ -84,13 +84,23 @@ class DatePickerView extends GetView<DatePickerController> {
                     initialPickerType: PickerType.days,
                     highlightColor: MYColor.primary,
                     splashRadius: 10.0,
+                    disabledDayPredicate: (date) {
+                      if(date.weekday == 5 || date.weekday == 6){
+                        return true;
+                      }else{
+                        return false;
+                      }
+                    },
                     daysOfTheWeekTextStyle: TextStyle(
+                      fontSize: 16.0,
                         color: MYColor.primary.withOpacity(0.6),
                         fontWeight: FontWeight.bold),
                     padding: EdgeInsets.zero,
                     centerLeadingDate: true,
-                    leadingDateTextStyle: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18.0),
+                    leadingDateTextStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                        color: MYColor.black),
 
                     selectedCellDecoration: BoxDecoration(
                         shape: BoxShape.rectangle,
@@ -126,7 +136,16 @@ class DatePickerView extends GetView<DatePickerController> {
                         fontWeight: FontWeight.w600),
                     currentDate: DateTime.now(),
                     onDateSelected: (value) {
-                      datePickerController.selectDateTime(value);
+                      if (value.weekday == 5 || value.weekday == 6) {
+                        mySnackBar(
+                          message: 'thurs_fri_days_service'.tr,
+                          color: MYColor.warning,
+                          title: 'warning'.tr,
+                          icon: Icons.warning,
+                        );
+                      } else {
+                        datePickerController.selectDateTime(value);
+                      }
                     },
                   )),
 

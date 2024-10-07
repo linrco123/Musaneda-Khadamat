@@ -189,7 +189,9 @@ class OrderDetailsView extends GetView<LocationsController> {
                                   height: 10,
                                 ),
                                 Text(chosenLocation.address!,
+                                textAlign: TextAlign.center,
                                     style: TextStyle(
+                                      
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.bold,
                                         color: MYColor.primary)),

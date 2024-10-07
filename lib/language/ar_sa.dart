@@ -510,4 +510,5 @@ const Map<String, String> arSA = {
   "see_personal_data":
       'إذا كنت تريد استعراض بياناتك الشخصية , يجب عليك اولا تسجيل الدخول أو إنشاء حساب',
   'service_restricted_riyad': 'خدمة الساعة مقتصرة على مدينة الرياض فقط',
+  'thurs_fri_days_service':'خدمة الساعة ليست متاحة فى يومي الخميس والجمعة',
 };

@@ -510,4 +510,6 @@ const Map<String, String> enUS = {
   'have_no_account':'You don\'t have an account yet !',
   "see_personal_data":'If you wish to display your personal data , you should log in or sign up first',
   'service_restricted_riyad':'Hourly Service is restricted upon just Riyad',
+  'thurs_fri_days_service':'Hourly service not available on Thursdays and Fridays',
+
 };
