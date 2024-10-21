@@ -120,7 +120,7 @@ class LoginView extends GetView<LoginController> {
                         : Alignment.centerLeft,
                     child: myInkWell(
                       fun: () {
-                        Get.toNamed(Routes.FORGET);
+                        Get.offAllNamed(Routes.FORGET);
                       },
                       text: "forgot_password".tr,
                       size: 14,
