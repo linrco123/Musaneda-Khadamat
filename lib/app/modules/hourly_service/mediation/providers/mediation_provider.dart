@@ -16,7 +16,7 @@ class MediationProvider extends GetConnect {
   Future<Nationalities> getNationalities() async {
     try {
       final res = await http.get(
-        Uri.parse("${Constance.apiEndpoint}/musaneda_nationality"),
+        Uri.parse("${Constance.apiEndpoint}/musaneda_nationality_mediation"),
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer ${Constance.getToken()}",
