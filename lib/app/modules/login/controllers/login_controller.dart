@@ -231,7 +231,7 @@ class LoginController extends GetxController {
 // }
   void getSystemType() {
     LoginProvider().getSystemType().then((value) {
-      systemType.value = 1;
+      systemType.value = value;
     });
   }
 
