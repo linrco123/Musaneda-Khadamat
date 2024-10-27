@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/date_picker/controllers/date_picker_controller.dart';
+import 'package:musaneda/app/modules/hourly_service/packages/controllers/packages_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
 import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
@@ -16,6 +17,7 @@ class DatePickerView extends GetView<DatePickerController> {
   Widget build(BuildContext context) {
     final datePickerController = Get.put(DatePickerController());
     final serviceTypeController = Get.put(ServiceTypeController());
+    final packageController = Get.put(PackagesController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -85,14 +87,14 @@ class DatePickerView extends GetView<DatePickerController> {
                     highlightColor: MYColor.primary,
                     splashRadius: 10.0,
                     disabledDayPredicate: (date) {
-                      if(date.weekday == 5 || date.weekday == 6){
+                      if (date.weekday == 5 || date.weekday == 6) {
                         return true;
-                      }else{
+                      } else {
                         return false;
                       }
                     },
                     daysOfTheWeekTextStyle: TextStyle(
-                      fontSize: 16.0,
+                        fontSize: 16.0,
                         color: MYColor.primary.withOpacity(0.6),
                         fontWeight: FontWeight.bold),
                     padding: EdgeInsets.zero,
@@ -176,7 +178,7 @@ class DatePickerView extends GetView<DatePickerController> {
               ),
               //const Spacer(),
               SizedBox(
-                height: Get.height / 15,
+                height: Get.height / 9,
               ),
               SizedBox(
                 width: Get.width,
@@ -184,7 +186,8 @@ class DatePickerView extends GetView<DatePickerController> {
                 child: MyCupertinoButton(
                     fun: () {
                       if (datePickerController.selectedDate.value.isNotEmpty) {
-                        Get.toNamed(Routes.SHOWADDRESS);
+                        datePickerController.validatePackageTiming(
+                            packageController.selectedPackage.value);
                         return;
                       }
                       mySnackBar(

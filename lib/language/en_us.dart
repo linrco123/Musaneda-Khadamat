@@ -128,7 +128,7 @@ const Map<String, String> enUS = {
   "confirmation": "Confirmation",
   "payment": "Payment",
   "city": "City",
-  "district":"District",
+  "district": "District",
   "address": "Address",
   "pick_up_branch": "Pickup branch",
   "rent_ended": "Rent ended",
@@ -311,7 +311,7 @@ const Map<String, String> enUS = {
   "create_new_location": "Create New Location",
   'msg_location_success': 'Location added successfully',
   "no_tickets_found": "No complaints yet",
-    'select_piority':"Please , select priority",
+  'select_piority': "Please , select priority",
 
   "you_have_no_locations_yet": "No locations yet !",
   "you_have_unexpired_contract": "You have unexpired contract",
@@ -503,13 +503,17 @@ const Map<String, String> enUS = {
   'call': 'Call',
   'view_cv': "View Resume",
   "skip": "SKIP",
-  'login_signup_heading':'If you want to request any service in our app Musaneda please, head to login or sign up ',
-  'guest':'Dear guest',
-  'go':'Go',
-  "delegations_empty":"No Delegations Yet !",
-  'have_no_account':'You don\'t have an account yet !',
-  "see_personal_data":'If you wish to display your personal data , you should log in or sign up first',
-  'service_restricted_riyad':'Hourly Service is restricted upon just Riyad',
-  'thurs_fri_days_service':'Hourly service not available on Thursdays and Fridays',
-
+  'login_signup_heading':
+      'If you want to request any service in our app Musaneda please, head to login or sign up ',
+  'guest': 'Dear guest',
+  'go': 'Go',
+  "delegations_empty": "No Delegations Yet !",
+  'have_no_account': 'You don\'t have an account yet !',
+  "see_personal_data":
+      'If you wish to display your personal data , you should log in or sign up first',
+  'service_restricted_riyad': 'Hourly Service is restricted upon just Riyad',
+  'thurs_fri_days_service':
+      'Hourly service not available on Thursdays and Fridays',
+  'package_not_available_now': 'this package is not available now',
+  'package_strt_time_by_2':'order demanding time should be less than package start time by 2 hours'
 };

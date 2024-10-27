@@ -13,6 +13,7 @@ class PackagesController extends GetxController {
     getPackages();
   }
 
+  final PackagesProvider _packageProvider = PackagesProvider();
   final serviceTypeController = Get.put(ServiceTypeController());
 
   RxInt selectedPackage = 0.obs;
@@ -20,7 +21,7 @@ class PackagesController extends GetxController {
   var hourPackages = List<PackageData>.empty(growable: true).obs;
 
   getPackages() {
-    PackagesProvider()
+    _packageProvider
         .getHourPackages(LanguageController.I.getLocale,
             serviceTypeController.nationality.value)
         .then((value) async {
@@ -33,12 +34,23 @@ class PackagesController extends GetxController {
     });
   }
 
+  void validatePackageTiming(int packageID) {
+    _packageProvider.validatePackageTiming(packageID).then((value) async {
+      await EasyLoading.dismiss();
+      if (value == 1) {
+        selectPackage(packageID);
+      }
+    }).catchError((error) async {
+      await EasyLoading.dismiss();
+    });
+  }
+
   void selectPackage(int package) {
     selectedPackage.value = package;
     update();
     Get.toNamed(Routes.DATEPICKER);
     // Future.delayed(const Duration(milliseconds: 500)).then((value) {
-      
+
     // });
   }
 }

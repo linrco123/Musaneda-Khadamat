@@ -40,14 +40,26 @@ Future<void> processOrderBatch(ISentrySpan span) async {
     await innerSpan.finish();
   }
 }
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+//  await  Future.wait([
+//     await LoginController.I.getSystemType(),
+//     await Firebase.initializeApp(
+//     name: "musaneda",
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   ),
+//   await NotificationController().initNotify(),
+//   await GetStorage.init()
+
+//   ]);
+  LoginController.I;
   await Firebase.initializeApp(
     name: "musaneda",
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  NotificationController().initNotify();
+  await NotificationController().initNotify();
   await GetStorage.init();
   //Controls operating system's graphical interface and how it interacts with the application.
   SystemChrome.setPreferredOrientations(

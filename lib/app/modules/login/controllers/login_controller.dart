@@ -229,10 +229,12 @@ class LoginController extends GetxController {
 //     "environment": 1,
 //     "msg": "production"
 // }
-  void getSystemType() {
-    LoginProvider().getSystemType().then((value) {
-      systemType.value = value;
-    });
+  Future<void> getSystemType() async{
+    try{
+    systemType.value  = await LoginProvider().getSystemType();
+    }catch(e , s){
+      await Sentry.captureException(e , stackTrace: s);
+    }
   }
 
   Future<void> removeAccount() async {
