@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:musaneda/app/modules/hourly_service/date_picker/controllers/date_picker_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/packages/controllers/packages_controller.dart';
 import 'package:musaneda/app/modules/hourly_service/service_type/controllers/servicetype_controller.dart';
-import 'package:musaneda/app/routes/app_pages.dart';
 import 'package:musaneda/components/myCupertinoButton.dart';
 import 'package:musaneda/components/mySnackbar.dart';
 import 'package:musaneda/config/myColor.dart';
